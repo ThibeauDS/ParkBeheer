@@ -23,11 +23,11 @@ namespace ParkDataLayer.Mappers
             }
         }
 
-        internal static ParkEF MapToDB(Park park)
+        public static ParkEF MapToDB(Park park)
         {
             try
             {
-                return new ParkEF(park.Id, park.Naam, park.Locatie, park.Huizen)
+                return new ParkEF(park.Id, park.Naam, park.Locatie, MapHuis.MapToDB(park.Huizen));
             }
             catch (Exception ex)
             {

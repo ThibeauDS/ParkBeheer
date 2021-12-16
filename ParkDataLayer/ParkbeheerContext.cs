@@ -33,7 +33,7 @@ namespace ParkDataLayer
         {
             //TODO: modelbuilder maken voor Dictionary van huis
             //modelBuilder.Entity<HuisEF>().HasMany(h => h.HuurContracten.Keys).WithOne(h => h.HuurderId);
-            //modelBuilder.Entity<HuisEF>().HasIndex(h => h.HuurContracten.Keys)
+            //modelBuilder.Entity<HuisEF>().HasIndex(h => h.HuurContracten.Keys);
             //modelBuilder.Entity<HuisEF>().HasOne(h => h.HuurContracten.Keys).WithOne();
         }
     }

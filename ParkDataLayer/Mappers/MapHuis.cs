@@ -23,7 +23,7 @@ namespace ParkDataLayer.Mappers
             }
         }
 
-        public static List<Huis> MapToDomain(List<HuisEF> huizenEF)
+        public static List<Huis> MapToDomain(ICollection<HuisEF> huizenEF)
         {
             try
             {
@@ -40,6 +40,24 @@ namespace ParkDataLayer.Mappers
             }
         }
 
+        public static List<HuisEF> MapToDB(Func<IReadOnlyList<Huis>> huizen)
+        {
+            try
+            {
+                IReadOnlyCollection<Huis> huizenDM = huizen.Invoke();
+                List<HuisEF> huizenEF = new();
+                foreach (Huis huis in huizenDM)
+                {
+                    huizenEF.Add(MapToDB(huis));
+                }
+                return huizenEF;
+            }
+            catch (Exception ex)
+            {
+                throw new MapperException("MapHuis - MapToDB", ex);
+            }
+        }
+
         public static HuisEF MapToDB(Huis huis)
         {
             try
@@ -52,7 +70,7 @@ namespace ParkDataLayer.Mappers
             }
         }
 
-        public static List<HuisEF> MapToDB(List<Huis> huizen)
+        public static List<HuisEF> MapToDB(ICollection<Huis> huizen)
         {
             try
             {
