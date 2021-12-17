@@ -5,6 +5,7 @@ namespace ParkDataLayer.Model
 {
     public class HuurderEF
     {
+        [Key]
         public int HuurderId { get; set; }
         [Required, Column(TypeName = "NVARCHAR(100)")]
         public string Naam { get; set; }

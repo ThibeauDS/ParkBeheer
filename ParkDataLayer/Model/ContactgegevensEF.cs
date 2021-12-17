@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ParkDataLayer.Model
 {
     public class ContactgegevensEF
     {
+        [Key]
         public int ContactgegevensId { get; set; }
         [Column(TypeName = "NVARCHAR(100)")]
         public string Email { get; set; }

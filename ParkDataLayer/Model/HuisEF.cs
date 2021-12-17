@@ -10,6 +10,7 @@ namespace ParkDataLayer.Model
 {
     public class HuisEF
     {
+        [Key]
         public int HuisId { get; set; }
         [Column(TypeName = "NVARCHAR(250)")]
         public string Straat { get; set; }
@@ -17,15 +18,15 @@ namespace ParkDataLayer.Model
         public int Nummer { get; set; }
         [Required]
         public bool Actief { get; set; }
-        public int ParkId { get; set; }
+        public string ParkId { get; set; }
         public ParkEF Park { get; set; }
-        public Dictionary<HuurderEF, List<HuurcontractEF>> HuurContracten { get; set; } = new();
+        public List<HuurcontractEF> HuurContracten { get; set; } = new();
 
         public HuisEF()
         {
         }
 
-        public HuisEF(int huisId, string straat, int nummer, bool actief, int parkId, ParkEF park, Dictionary<HuurderEF, List<HuurcontractEF>> huurContracten)
+        public HuisEF(int huisId, string straat, int nummer, bool actief, string parkId, ParkEF park, List<HuurcontractEF> huurContracten)
         {
             HuisId = huisId;
             Straat = straat;

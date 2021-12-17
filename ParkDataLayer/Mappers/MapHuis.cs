@@ -62,7 +62,7 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
-                return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, int.Parse(huis.Park.Id), MapPark.MapToDB(huis.Park), MapHuurcontracten.MapToDB(huis.Huurcontracten));
+                return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, huis.Park.Id, MapPark.MapToDB(huis.Park), MapHuurcontracten.MapToDB(huis.Huurcontracten));
             }
             catch (Exception ex)
             {

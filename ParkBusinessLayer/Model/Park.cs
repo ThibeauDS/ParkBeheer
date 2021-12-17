@@ -22,7 +22,7 @@ namespace ParkBusinessLayer.Model
         }
         public void ZetId(string id)
         {
-            if (string.IsNullOrWhiteSpace(Id)) throw new ParkException("Park zetid");
+            if (string.IsNullOrWhiteSpace(id)) throw new ParkException("Park zetid");
             Id = id;
         }
         public void ZetNaam(string naam)

@@ -9,6 +9,7 @@ namespace ParkDataLayer.Model
 {
     public class HuurperiodeEF
     {
+        [Key]
         public int HuurperiodeId { get; set; }
         [Required]
         public DateTime StartDatum { get; set; }

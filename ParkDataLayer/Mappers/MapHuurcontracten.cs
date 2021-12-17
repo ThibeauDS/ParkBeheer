@@ -11,7 +11,7 @@ namespace ParkDataLayer.Mappers
 {
     public class MapHuurcontracten
     {
-        public static Dictionary<Huurder, List<Huurcontract>> MapToDomain(Dictionary<HuurderEF, List<HuurcontractEF>> d)
+        public static Dictionary<Huurder, List<Huurcontract>> MapToDomain(List<HuurcontractEF> d)
         {
             try
             {
@@ -25,12 +25,12 @@ namespace ParkDataLayer.Mappers
             }
         }
 
-        internal static Dictionary<HuurderEF, List<HuurcontractEF>> MapToDB(Func<IReadOnlyList<Huurcontract>> h)
+        internal static List<HuurcontractEF> MapToDB(Func<IReadOnlyList<Huurcontract>> h)
         {
             try
             {
                 //TODO: Dictionary<HuurderEF, List<HuurcontractEF>> MapToDB(Func<IReadOnlyList<Huurcontract>> h)
-                Dictionary<HuurderEF, List<HuurcontractEF>> huurContracten = new();
+                List<HuurcontractEF> huurContracten = new();
                 return huurContracten;
             }
             catch (Exception ex)
