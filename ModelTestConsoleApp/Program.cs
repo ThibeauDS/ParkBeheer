@@ -22,7 +22,7 @@ namespace ModelTestConsoleApp
             bh.VoegNieuwHuisToe("parklaan", 1, p);
             bh.VoegNieuwHuisToe("parklaan", 2, p);
             bh.VoegNieuwHuisToe("parklaan", 3, p);
-            //var x = bh.GeefHuis(1);
+            var x = bh.GeefHuis(1);
             //x.ZetStraat("Kerkstraat");
             //x.ZetNr(11);
             //bh.UpdateHuis(x);

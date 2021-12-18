@@ -15,8 +15,7 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
-                //TODO: Dictionary<Huurder, List<Huurcontract>> MapToDomain(Dictionary<HuurderEF, List<HuurcontractEF>> d)
-                Dictionary<Huurder, List<Huurcontract>> huurContracten = new();
+                Dictionary<Huurder, List<Huurcontract>> huurContracten = (Dictionary<Huurder, List<Huurcontract>>)d.GroupBy(e => e.Huurder);
                 return huurContracten;
             }
             catch (Exception ex)
@@ -25,7 +24,7 @@ namespace ParkDataLayer.Mappers
             }
         }
 
-        internal static List<HuurcontractEF> MapToDB(Func<IReadOnlyList<Huurcontract>> h)
+        public static List<HuurcontractEF> MapToDB(Func<IReadOnlyList<Huurcontract>> h)
         {
             try
             {

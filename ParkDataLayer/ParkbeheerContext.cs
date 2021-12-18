@@ -31,10 +31,14 @@ namespace ParkDataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //TODO: modelbuilder maken voor Dictionary van huis
-            //modelBuilder.Entity<HuisEF>().HasMany(h => h.HuurContracten.Keys).WithOne(h => h.HuurderId);
-            //modelBuilder.Entity<HuisEF>().HasIndex(h => h.HuurContracten.Keys);
-            //modelBuilder.Entity<HuisEF>().HasOne(h => h.HuurContracten.Keys).WithOne();
+            //modelBuilder.Entity<HuisEF>().HasOne(h => h.Park).WithOne(p => p.Huis).HasForeignKey(h => h.Huis);
+            //modelBuilder.Entity<HuisEF>().HasIndex(h => h.ParkId);
+            //modelBuilder.Entity<ParkEF>().HasMany(p => p.Huis).WithOne(h => h.Park);
+            //modelBuilder.Entity<ParkEF>().HasOne(p => p.ParkId).WithMany()
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
     }
 }
