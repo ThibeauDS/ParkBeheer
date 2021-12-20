@@ -28,7 +28,7 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                return MapHuurder.MapToDomain(_ctx.Huurders.Where(h => h.HuurderId == id).AsNoTracking().FirstOrDefault());
+                return MapHuurder.MapToDomain(_ctx.Huurders.Where(h => h.HuurderId == id).Include(h => h.Contactgegevens).AsNoTracking().FirstOrDefault());
             }
             catch (Exception ex)
             {

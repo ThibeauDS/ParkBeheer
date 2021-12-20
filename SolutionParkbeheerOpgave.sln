@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkDataLayer", "ParkDataLa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsoleTestProjects", "ConsoleTestProjects", "{D9DCA079-FE5D-4D98-82C2-5A28D442EBC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTestConsoleApp", "ModelTestConsoleApp\ModelTestConsoleApp.csproj", "{7D451942-86EE-48CC-BDE0-DD1130B85541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelTestConsoleApp", "ModelTestConsoleApp\ModelTestConsoleApp.csproj", "{7D451942-86EE-48CC-BDE0-DD1130B85541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTestConsoleApp2", "ModelTestConsoleApp2\ModelTestConsoleApp2.csproj", "{3840F755-41C8-443E-8109-3267F705A6B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +31,17 @@ Global
 		{7D451942-86EE-48CC-BDE0-DD1130B85541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D451942-86EE-48CC-BDE0-DD1130B85541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D451942-86EE-48CC-BDE0-DD1130B85541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3840F755-41C8-443E-8109-3267F705A6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3840F755-41C8-443E-8109-3267F705A6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3840F755-41C8-443E-8109-3267F705A6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3840F755-41C8-443E-8109-3267F705A6B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7D451942-86EE-48CC-BDE0-DD1130B85541} = {D9DCA079-FE5D-4D98-82C2-5A28D442EBC9}
+		{3840F755-41C8-443E-8109-3267F705A6B7} = {D9DCA079-FE5D-4D98-82C2-5A28D442EBC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77459B4C-C7C7-4163-904A-055C5800965E}

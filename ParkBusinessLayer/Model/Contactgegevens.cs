@@ -11,5 +11,10 @@
         public string Email { get; set; }
         public string Tel { get; set; }
         public string Adres { get; set; }
+
+        public override string ToString()
+        {
+            return $"Email: {Email}, Telefoon: {Tel}, Adres: {Adres}";
+        }
     }
 }

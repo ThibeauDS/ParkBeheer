@@ -44,5 +44,10 @@ namespace ParkBusinessLayer.Model
             if (!_huis.Contains(huis)) throw new ParkException("verwijderhuis");
             _huis.Remove(huis);
         }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Naam: {Naam}, Locatie: {Locatie}";
+        }
     }
 }
