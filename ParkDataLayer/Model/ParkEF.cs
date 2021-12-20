@@ -25,5 +25,12 @@ namespace ParkDataLayer.Model
             Locatie = locatie;
             Huis = huis;
         }
+
+        public ParkEF(string parkId, string naam, string locatie)
+        {
+            ParkId = parkId;
+            Naam = naam;
+            Locatie = locatie;
+        }
     }
 }

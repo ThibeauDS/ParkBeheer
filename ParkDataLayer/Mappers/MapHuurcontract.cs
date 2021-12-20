@@ -15,11 +15,37 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
+                if (huurcontractEF == null)
+                {
+                    return null;
+                }
                 return new Huurcontract(huurcontractEF.HuurcontractId, MapHuurperiode.MapToDomain(huurcontractEF.Huurperiode), MapHuurder.MapToDomain(huurcontractEF.Huurder), MapHuis.MapToDomain(huurcontractEF.Huis));
             }
             catch (Exception ex)
             {
                 throw new MapperException("MapHuurcontract - MapToDomain", ex);
+            }
+        }
+
+        public static HuurcontractEF MapToDB(Huurcontract contract, ParkbeheerContext ctx)
+        {
+            try
+            {
+                HuisEF huisEF = ctx.Huizen.Find(contract.Huis.Id);
+                if (huisEF == null)
+                {
+                    huisEF = MapHuis.MapToDB(contract.Huis, ctx);
+                }
+                HuurderEF huurderEF = ctx.Huurders.Find(contract.Huurder.Id);
+                if (huurderEF == null)
+                {
+                    huurderEF = MapHuurder.MapToDB(contract.Huurder);
+                }
+                return new HuurcontractEF(contract.Id, MapHuurperiode.MapToDB(contract.Huurperiode), huurderEF, huisEF);
+            }
+            catch (Exception ex)
+            {
+                throw new MapperException("MapHuurcontract - MapToDB", ex);
             }
         }
 

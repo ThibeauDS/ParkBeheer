@@ -3,6 +3,7 @@ using ParkBusinessLayer.Interfaces;
 using ParkBusinessLayer.Model;
 using ParkDataLayer.Exceptions;
 using ParkDataLayer.Mappers;
+using ParkDataLayer.Model;
 using System;
 using System.Linq;
 
@@ -27,7 +28,7 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                return MapHuis.MapToDomain(_ctx.Huizen.Where(h => h.HuisId == id).Include(x => x.Park).AsNoTracking().FirstOrDefault());
+                return MapHuis.MapToDomain(_ctx.Huizen.Where(h => h.HuisId == id).Include(h => h.Park).AsNoTracking().FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -72,13 +73,15 @@ namespace ParkDataLayer.Repositories
             }
         }
 
-        public Huis VoegHuisToe(Huis h)
+        public Huis VoegHuisToe(Huis huis)
         {
             try
             {
-                _ctx.Huizen.Add(MapHuis.MapToDB(h));
+                HuisEF huisEF = MapHuis.MapToDB(huis, _ctx);
+                _ctx.Huizen.Add(huisEF);
                 SaveAndClear();
-                return h;
+                huis.ZetId(huisEF.HuisId);
+                return huis;
             }
             catch (Exception ex)
             {

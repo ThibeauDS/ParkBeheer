@@ -15,7 +15,8 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
-                return new Park(park.ParkId, park.Naam, park.Locatie, MapHuis.MapToDomain(park.Huis));
+                //return new Park(park.ParkId, park.Naam, park.Locatie, MapHuis.MapToDomain(park.Huis));
+                return new Park(park.ParkId, park.Naam, park.Locatie);
             }
             catch (Exception ex)
             {

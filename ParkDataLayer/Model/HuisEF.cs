@@ -36,5 +36,12 @@ namespace ParkDataLayer.Model
             Park = park;
             HuurContracten = huurContracten;
         }
+
+        public HuisEF(string straat, int nummer, bool actief)
+        {
+            Straat = straat;
+            Nummer = nummer;
+            Actief = actief;
+        }
     }
 }

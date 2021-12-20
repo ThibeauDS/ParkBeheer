@@ -27,7 +27,7 @@ namespace ParkBusinessLayer.Model
         }
         public void ZetNaam(string naam)
         {
-            if (string.IsNullOrWhiteSpace(Naam)) throw new ParkException("huurder zetnaam");
+            if (string.IsNullOrWhiteSpace(naam)) throw new ParkException("huurder zetnaam");
             Naam = naam;
         }
         public void ZetContactgegevens(Contactgegevens contactgegevens)

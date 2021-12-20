@@ -15,7 +15,12 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
-                Dictionary<Huurder, List<Huurcontract>> huurContracten = (Dictionary<Huurder, List<Huurcontract>>)d.GroupBy(e => e.Huurder);
+                List<Huurcontract> huurcontracts = new();
+                foreach (HuurcontractEF EF in d)
+                {
+                    huurcontracts.Add(MapHuurcontract.MapToDomain(EF));
+                }
+                Dictionary<Huurder, List<Huurcontract>> huurContracten = huurcontracts.GroupBy(h => h.Huurder).ToDictionary(h => h.Key, h => h.ToList());
                 return huurContracten;
             }
             catch (Exception ex)

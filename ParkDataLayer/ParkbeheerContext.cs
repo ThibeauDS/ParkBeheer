@@ -31,10 +31,6 @@ namespace ParkDataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<HuisEF>().HasOne(h => h.Park).WithOne(p => p.Huis).HasForeignKey(h => h.Huis);
-            //modelBuilder.Entity<HuisEF>().HasIndex(h => h.ParkId);
-            //modelBuilder.Entity<ParkEF>().HasMany(p => p.Huis).WithOne(h => h.Park);
-            //modelBuilder.Entity<ParkEF>().HasOne(p => p.ParkId).WithMany()
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;

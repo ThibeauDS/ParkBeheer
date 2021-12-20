@@ -42,7 +42,7 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                return MapHuurcontract.MapToDomain(_ctx.Huurcontracten.Where(h => h.HuurcontractId == id).AsNoTracking().FirstOrDefault());
+                return MapHuurcontract.MapToDomain(_ctx.Huurcontracten.Where(h => h.HuurcontractId == id).Include(h => h.Huis).ThenInclude(h => h.Park).Include(h => h.Huurperiode).Include(h => h.Huurder).ThenInclude(h => h.Contactgegevens).AsNoTracking().FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -103,7 +103,8 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                _ctx.Huurcontracten.Add(MapHuurcontract.MapToDB(contract));
+                HuurcontractEF huurcontractEF = MapHuurcontract.MapToDB(contract, _ctx);
+                _ctx.Huurcontracten.Add(huurcontractEF);
                 SaveAndClear();
             }
             catch (Exception ex)

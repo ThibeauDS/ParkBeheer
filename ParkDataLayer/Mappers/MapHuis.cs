@@ -15,7 +15,8 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
-                return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park), MapHuurcontracten.MapToDomain(huisEF.HuurContracten));
+                //return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park), MapHuurcontracten.MapToDomain(huisEF.HuurContracten));
+                return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park));
             }
             catch (Exception ex)
             {
@@ -63,6 +64,23 @@ namespace ParkDataLayer.Mappers
             try
             {
                 return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, huis.Park.Id, MapPark.MapToDB(huis.Park), MapHuurcontracten.MapToDB(huis.Huurcontracten));
+            }
+            catch (Exception ex)
+            {
+                throw new MapperException("MapHuis - MapToDB", ex);
+            }
+        }
+
+        public static HuisEF MapToDB(Huis huis, ParkbeheerContext ctx)
+        {
+            try
+            {
+                ParkEF parkEF = ctx.Parken.Find(huis.Park.Id);
+                if (parkEF == null)
+                {
+                    parkEF = MapPark.MapToDB(huis.Park);
+                }
+                return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, parkEF.ParkId, parkEF, MapHuurcontracten.MapToDB(huis.Huurcontracten));
             }
             catch (Exception ex)
             {
