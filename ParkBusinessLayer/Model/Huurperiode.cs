@@ -26,5 +26,10 @@ namespace ParkBusinessLayer.Model
         {
             return HashCode.Combine(StartDatum, EindDatum, Aantaldagen);
         }
+
+        public override string ToString()
+        {
+            return $"StartDatum: {StartDatum}, EindDatum: {EindDatum}, Aantal dagen: {Aantaldagen}";
+        }
     }
 }

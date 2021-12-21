@@ -15,6 +15,7 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
+                //TODO: fix loop
                 List<Huurcontract> huurcontracts = new();
                 foreach (HuurcontractEF EF in d)
                 {
@@ -29,12 +30,15 @@ namespace ParkDataLayer.Mappers
             }
         }
 
-        public static List<HuurcontractEF> MapToDB(Func<IReadOnlyList<Huurcontract>> h)
+        public static List<HuurcontractEF> MapToDB(IReadOnlyList<Huurcontract> h)
         {
             try
             {
-                //TODO: Dictionary<HuurderEF, List<HuurcontractEF>> MapToDB(Func<IReadOnlyList<Huurcontract>> h)
                 List<HuurcontractEF> huurContracten = new();
+                foreach (var x in h)
+                {
+                    huurContracten.Add(MapHuurcontract.MapToDB(x));
+                }
                 return huurContracten;
             }
             catch (Exception ex)

@@ -15,8 +15,13 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
-                //return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park), MapHuurcontracten.MapToDomain(huisEF.HuurContracten));
+                if (huisEF.HuurContracten.Count == 0)
+                {
                 return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park));
+                }
+                return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park));
+                //TODO: Switchen alleen als de loop in orde is.
+                //return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park), MapHuurcontracten.MapToDomain(huisEF.HuurContracten));
             }
             catch (Exception ex)
             {
@@ -63,7 +68,24 @@ namespace ParkDataLayer.Mappers
         {
             try
             {
-                return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, huis.Park.Id, MapPark.MapToDB(huis.Park), MapHuurcontracten.MapToDB(huis.Huurcontracten));
+                return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, huis.Park.Id, MapPark.MapToDB(huis.Park));
+            }
+            catch (Exception ex)
+            {
+                throw new MapperException("MapHuis - MapToDB", ex);
+            }
+        }
+
+        public static HuisEF MapToDB(Huis huis, Huurder huurder, ParkbeheerContext ctx)
+        {
+            try
+            {
+                ParkEF parkEF = ctx.Parken.Find(huis.Park.Id);
+                if (parkEF == null)
+                {
+                    parkEF = MapPark.MapToDB(huis.Park);
+                }
+                return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, parkEF.ParkId, parkEF, MapHuurcontracten.MapToDB(huis.Huurcontracten(huurder)));
             }
             catch (Exception ex)
             {
@@ -80,7 +102,7 @@ namespace ParkDataLayer.Mappers
                 {
                     parkEF = MapPark.MapToDB(huis.Park);
                 }
-                return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, parkEF.ParkId, parkEF, MapHuurcontracten.MapToDB(huis.Huurcontracten));
+                return new HuisEF(huis.Id, huis.Straat, huis.Nr, huis.Actief, parkEF.ParkId, parkEF);
             }
             catch (Exception ex)
             {

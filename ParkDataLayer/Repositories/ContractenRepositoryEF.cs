@@ -54,7 +54,11 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                return _ctx.Huurcontracten.Select(h => MapHuurcontract.MapToDomain(h)).Where(h => h.Huurperiode.StartDatum == dtBegin && h.Huurperiode.EindDatum == dtEinde).AsNoTracking().ToList();
+                if (dtEinde == null)
+                {
+                    return _ctx.Huurcontracten.Include(h => h.Huis).ThenInclude(h => h.Park).Include(h => h.Huurperiode).Include(h => h.Huurder).ThenInclude(h => h.Contactgegevens).Where(h => h.Huurperiode.StartDatum >= dtBegin).Select(h => MapHuurcontract.MapToDomain(h)).AsNoTracking().ToList();
+                }
+                return _ctx.Huurcontracten.Include(h => h.Huis).ThenInclude(h => h.Park).Include(h => h.Huurperiode).Include(h => h.Huurder).ThenInclude(h => h.Contactgegevens).Where(h => h.Huurperiode.StartDatum >= dtBegin && h.Huurperiode.EindDatum <= dtEinde).Select(h => MapHuurcontract.MapToDomain(h)).AsNoTracking().ToList();
             }
             catch (Exception ex)
             {

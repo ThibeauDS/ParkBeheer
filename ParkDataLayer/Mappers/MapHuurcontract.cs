@@ -34,7 +34,7 @@ namespace ParkDataLayer.Mappers
                 HuisEF huisEF = ctx.Huizen.Find(contract.Huis.Id);
                 if (huisEF == null)
                 {
-                    huisEF = MapHuis.MapToDB(contract.Huis, ctx);
+                    huisEF = MapHuis.MapToDB(contract.Huis, contract.Huurder, ctx);
                 }
                 HuurderEF huurderEF = ctx.Huurders.Find(contract.Huurder.Id);
                 if (huurderEF == null)

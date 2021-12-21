@@ -40,7 +40,7 @@ namespace ParkDataLayer.Repositories
         {
             try
             {
-                return _ctx.Huurders.Select(h => MapHuurder.MapToDomain(h)).Where(h => h.Naam == naam).AsNoTracking().ToList();
+                return _ctx.Huurders.Include(h => h.Contactgegevens).Where(h => h.Naam == naam).Select(h => MapHuurder.MapToDomain(h)).AsNoTracking().ToList();
             }
             catch (Exception ex)
             {
