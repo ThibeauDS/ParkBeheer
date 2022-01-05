@@ -21,6 +21,7 @@ namespace ParkDataLayer.Mappers
                 }
                 return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park));
                 //TODO: Switchen alleen als de loop in orde is.
+                //Huis meegeven op het juiste moment
                 //return new Huis(huisEF.HuisId, huisEF.Straat, huisEF.Nummer, huisEF.Actief, MapPark.MapToDomain(huisEF.Park), MapHuurcontracten.MapToDomain(huisEF.HuurContracten));
             }
             catch (Exception ex)
